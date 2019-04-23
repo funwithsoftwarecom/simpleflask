@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+   <body>
+   <form action="/tvapi" method="get">
+  Show Name:
+  <input type="text" name="show_name" value=""><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
+
+   <table>
+   <tr><td>Name</td><td>Score</td></tr>
+   	 {% for item in template_data %}
+   	 {% if item["show"] is defined %} 
+      <tr><td>{{item["show"]["name"]}}</td>
+      {% for key, value in item["show"].items() %}
+      
+      {% if key == "image" %}
+       <td><a href="{{item["show"]["_links"]["self"]["href"]}}"><img src="{{value["medium"]}}"/></a></td> 
+      {% else %}
+       
+      {% endif %}
+      
+       {% endfor %}
+       {% endif %}
+       </tr>
+       {% endfor %}
+       </table>
+       
+   </body>
+</html>
